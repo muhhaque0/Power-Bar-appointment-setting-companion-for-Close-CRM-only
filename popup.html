@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Close CRM Power Bar</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 300px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #1a1a2e;
+      color: #e0e0e0;
+      padding: 20px;
+    }
+    h2 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    p.sub {
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 16px;
+    }
+    label {
+      font-size: 11px;
+      color: #aaa;
+      display: block;
+      margin-bottom: 4px;
+    }
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid #333;
+      background: #0f0f1a;
+      color: #fff;
+      font-size: 13px;
+      margin-bottom: 10px;
+      outline: none;
+    }
+    input:focus { border-color: #5b6af0; }
+    button {
+      width: 100%;
+      padding: 9px;
+      border-radius: 6px;
+      border: none;
+      background: #5b6af0;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover { background: #4a58d8; }
+    #status {
+      margin-top: 10px;
+      font-size: 12px;
+      text-align: center;
+      min-height: 18px;
+    }
+    #status.ok { color: #4caf50; }
+    #status.err { color: #f44336; }
+    .divider {
+      border: none;
+      border-top: 1px solid #2a2a3e;
+      margin: 14px 0;
+    }
+    .settings-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .settings-row span { font-size: 12px; color: #bbb; }
+    select {
+      background: #0f0f1a;
+      border: 1px solid #333;
+      color: #fff;
+      border-radius: 4px;
+      padding: 4px 6px;
+      font-size: 12px;
+    }
+    .toggle {
+      position: relative;
+      width: 36px;
+      height: 20px;
+    }
+    .toggle input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #333;
+      border-radius: 20px;
+      transition: .3s;
+    }
+    .slider:before {
+      content: "";
+      position: absolute;
+      height: 14px; width: 14px;
+      left: 3px; bottom: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: .3s;
+    }
+    input:checked + .slider { background: #5b6af0; }
+    input:checked + .slider:before { transform: translateX(16px); }
+  </style>
+</head>
+<body>
+  <h2>🔌 Close CRM Power Bar</h2>
+  <p class="sub">Enter your Close CRM API key to enable the stats bar.</p>
+
+  <label>API Key</label>
+  <input type="password" id="apiKey" placeholder="api_xxxxxxxxxxxxxxxxxx" />
+
+  <label>Rep Name (optional override)</label>
+  <input type="text" id="repName" placeholder="Auto-detected from API" />
+
+  <button id="saveBtn">Save & Connect</button>
+  <div id="status"></div>
+
+  <hr class="divider" />
+
+  <div class="settings-row">
+    <span>Refresh interval</span>
+    <select id="refreshInterval">
+      <option value="30">30s</option>
+      <option value="60" selected>1 min</option>
+      <option value="120">2 min</option>
+      <option value="300">5 min</option>
+    </select>
+  </div>
+
+  <div class="settings-row">
+    <span>Show lead info panel</span>
+    <label class="toggle">
+      <input type="checkbox" id="showLeadPanel" checked />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="settings-row">
+    <span>Show bar on all Close pages</span>
+    <label class="toggle">
+      <input type="checkbox" id="showAlways" checked />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

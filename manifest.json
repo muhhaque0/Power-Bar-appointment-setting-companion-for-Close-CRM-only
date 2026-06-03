@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Close CRM Power Bar",
+  "version": "1.0.0",
+  "description": "Adds a persistent stats overlay bar to Close CRM showing dials, talk time, rep info, and live lead data.",
+  "permissions": [
+    "storage",
+    "alarms"
+  ],
+  "host_permissions": [
+    "https://app.close.com/*",
+    "https://api.close.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://app.close.com/*"],
+      "js": ["content.js"],
+      "css": ["bar.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Close CRM Power Bar"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
